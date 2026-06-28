@@ -1,0 +1,41 @@
+---
+import { nav, site } from "../data/content";
+---
+
+<header
+  data-nav
+  class="fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500 border-b border-transparent data-[scrolled]:border-graphite/60 data-[scrolled]:bg-void/80 data-[scrolled]:backdrop-blur-xl"
+>
+  <div class="container-luma flex h-16 items-center justify-between md:h-[4.5rem]">
+    <!-- Wordmark + mark -->
+    <a href="#top" class="group flex items-center gap-3">
+      <span class="flex h-4 items-end gap-[3px]" aria-hidden="true">
+        <span class="block w-[2px] bg-[var(--color-accent)] h-3 transition-all duration-300 group-hover:h-4"></span>
+        <span class="block w-[2px] bg-[var(--color-accent)] h-4"></span>
+        <span class="block w-[2px] bg-[var(--color-accent)] h-2.5 transition-all duration-300 group-hover:h-4"></span>
+      </span>
+      <span class="text-lg font-medium tracking-[0.32em] text-chalk">{site.brand}</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-9 lg:flex">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm text-bone transition-colors duration-300 hover:text-chalk"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href={site.phoneHref} class="hidden text-sm text-bone transition-colors hover:text-chalk md:block">
+        {site.phone}
+      </a>
+      <a href="#booking" class="pill pill-primary !py-2.5 !px-5 text-[0.8rem]">Записаться</a>
+    </div>
+  </div>
+</header>

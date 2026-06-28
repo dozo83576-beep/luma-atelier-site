@@ -1,0 +1,40 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { specialists } from "../../data/content";
+---
+
+<section id="team" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index="10" label="Специалисты" />
+
+    <div class="mt-10 max-w-2xl md:mt-14">
+      <h2 class="reveal font-display text-chalk" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+        Один мастер ведёт вас от диагностики до результата
+      </h2>
+    </div>
+
+    <div class="mt-12 grid gap-5 md:mt-16 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        specialists.map((s, i) => (
+          <article class="reveal group" style={`--reveal-delay: ${i * 90}ms;`}>
+            <div class="relative aspect-[4/5] overflow-hidden rounded-xl card-shadow">
+              <img
+                src={s.img}
+                alt={`${s.name} — ${s.role}`}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover grayscale-[0.25] transition-all duration-[1.2s] ease-out group-hover:scale-105 group-hover:grayscale-0"
+              />
+              <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 55%, rgba(10,10,11,0.85) 100%);"></div>
+            </div>
+            <div class="mt-5 flex items-baseline justify-between">
+              <h3 class="font-display text-2xl text-chalk">{s.name}</h3>
+              <span class="meta text-[var(--color-accent)]">{s.role}</span>
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-bone">{s.focus}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { philosophy } from "../../data/content";
+---
+
+<section id="philosophy" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index={philosophy.index} label={philosophy.label} />
+
+    <div class="mt-12 grid gap-10 md:mt-16 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-7">
+        <h2
+          class="reveal font-display text-chalk"
+          style="font-size: clamp(1.9rem, 4vw, 3.25rem); line-height: 1.08;"
+        >
+          {philosophy.heading}
+        </h2>
+      </div>
+      <div class="reveal space-y-5 self-end lg:col-span-5" style="--reveal-delay: 120ms;">
+        {philosophy.body.map((p) => <p class="text-bone leading-relaxed md:text-lg">{p}</p>)}
+        <p class="meta pt-2 text-[var(--color-accent)]">{philosophy.signature}</p>
+      </div>
+    </div>
+  </div>
+</section>

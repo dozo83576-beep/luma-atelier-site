@@ -1,0 +1,117 @@
+---
+import { booking, site } from "../../data/content";
+---
+
+<section id="booking" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <!-- Left: invitation + contacts -->
+      <div class="lg:col-span-5">
+        <div class="reveal flex items-center gap-4">
+          <span class="ghost-index">{booking.index}</span>
+          <span class="meta">{booking.label}</span>
+        </div>
+        <h2 class="reveal mt-8 font-display text-chalk" style="font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.04;">
+          {booking.heading}
+        </h2>
+        <p class="reveal mt-6 max-w-md text-bone leading-relaxed" style="--reveal-delay: 100ms;">
+          {booking.subtitle}
+        </p>
+
+        <div class="reveal mt-10 space-y-4 border-t border-graphite pt-8" style="--reveal-delay: 150ms;">
+          <a href={site.phoneHref} class="block font-display text-2xl text-chalk transition-colors hover:text-[var(--color-accent)]">
+            {site.phone}
+          </a>
+          <a href={`mailto:${site.email}`} class="block text-bone transition-colors hover:text-chalk">{site.email}</a>
+          <p class="text-bone">{site.address}</p>
+          <p class="meta">{site.hours}</p>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div class="lg:col-span-7">
+        <form
+          id="booking-form"
+          novalidate
+          class="reveal rounded-xl border border-graphite bg-carbon p-7 md:p-10"
+        >
+          <div class="grid gap-6 sm:grid-cols-2">
+            <label class="block">
+              <span class="meta mb-2 block text-bone">{booking.fields.name}</span>
+              <input
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+                class="w-full border-b border-graphite bg-transparent pb-3 text-chalk outline-none transition-colors placeholder:text-smoke focus:border-[var(--color-accent)]"
+                placeholder="Имя"
+              />
+            </label>
+            <label class="block">
+              <span class="meta mb-2 block text-bone">{booking.fields.phone}</span>
+              <input
+                type="tel"
+                name="phone"
+                required
+                autocomplete="tel"
+                inputmode="tel"
+                class="w-full border-b border-graphite bg-transparent pb-3 text-chalk outline-none transition-colors placeholder:text-smoke focus:border-[var(--color-accent)]"
+                placeholder="+7 ___ ___ __ __"
+              />
+            </label>
+          </div>
+
+          <label class="mt-6 block">
+            <span class="meta mb-2 block text-bone">{booking.fields.service}</span>
+            <select
+              name="service"
+              class="w-full border-b border-graphite bg-transparent pb-3 text-chalk outline-none transition-colors focus:border-[var(--color-accent)]"
+            >
+              {booking.services.map((s) => <option class="bg-carbon text-chalk">{s}</option>)}
+            </select>
+          </label>
+
+          <label class="mt-6 block">
+            <span class="meta mb-2 block text-bone">{booking.fields.comment}</span>
+            <textarea
+              name="comment"
+              rows="3"
+              class="w-full resize-none border-b border-graphite bg-transparent pb-3 text-chalk outline-none transition-colors placeholder:text-smoke focus:border-[var(--color-accent)]"
+              placeholder="Что вас беспокоит или интересует"
+            ></textarea>
+          </label>
+
+          <label class="mt-7 flex cursor-pointer items-start gap-3">
+            <input type="checkbox" name="consent" required class="luma-check mt-1 shrink-0" />
+            <span class="text-xs leading-relaxed text-smoke">{booking.consent}</span>
+          </label>
+
+          <button type="submit" class="pill pill-primary mt-8 w-full justify-center sm:w-auto sm:min-w-[14rem]">
+            {booking.submit}
+          </button>
+
+          <p id="booking-success" hidden class="mt-6 text-sm text-[var(--color-accent)]">{booking.success}</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("booking-form") as HTMLFormElement | null;
+  const success = document.getElementById("booking-success");
+  if (form && success) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Клиентская валидация (демо-форма без backend)
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      // Здесь будет реальная отправка заявки (email / Telegram / CRM).
+      success.removeAttribute("hidden");
+      form.reset();
+      success.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+</script>

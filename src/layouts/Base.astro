@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+import { site } from "../data/content";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.brand} — ${site.descriptor}`,
+  description = "ЛУМА — премиальный дом ухода за лицом и телом в Москве. Диагностика кожи, индивидуальные программы, массаж, работа с проблемной кожей и SPA-ритуалы.",
+} = Astro.props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  name: "ЛУМА",
+  description,
+  image: canonical + "img/hero.jpg",
+  url: canonical,
+  telephone: site.phone,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address,
+    addressLocality: site.city,
+    addressCountry: "RU",
+  },
+  openingHours: "Mo-Su 10:00-22:00",
+  priceRange: "₽₽₽",
+};
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={canonical + "img/hero.jpg"} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="theme-color" content="#0a0a0b" />
+
+    <!-- Preload ключевых шрифтов первого экрана -->
+    <link rel="preload" href="/fonts/cormorant-cyrillic-500.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/onest-cyrillic-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      import "../lib/reveal.ts";
+    </script>
+  </body>
+</html>

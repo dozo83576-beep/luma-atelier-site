@@ -1,0 +1,49 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { directions } from "../../data/content";
+---
+
+<section id="directions" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index="02" label="Направления ухода" />
+
+    <div class="mt-10 max-w-2xl md:mt-14">
+      <h2 class="reveal font-display text-chalk" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+        Шесть направлений, одна логика - результат, а не процедура
+      </h2>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-16">
+      {
+        directions.map((d, i) => (
+          <article
+            class="reveal group relative aspect-[4/5] overflow-hidden rounded-xl card-shadow"
+            style={`--reveal-delay: ${(i % 3) * 90}ms;`}
+          >
+            <img
+              src={d.img}
+              alt={d.alt}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0"
+              style="background: linear-gradient(180deg, rgba(10,10,11,0.05) 0%, rgba(10,10,11,0.35) 45%, rgba(10,10,11,0.92) 100%);"
+            >
+            </div>
+            <div class="absolute inset-0 flex flex-col justify-between p-6">
+              <span class="ghost-index">{d.num}</span>
+              <div>
+                <h3 class="font-display text-2xl text-chalk md:text-[1.75rem]">{d.title}</h3>
+                <p class="mt-2 max-w-xs text-sm leading-relaxed text-bone transition-all duration-500 [@media(hover:hover)]:translate-y-2 [@media(hover:hover)]:opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                  {d.desc}
+                </p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

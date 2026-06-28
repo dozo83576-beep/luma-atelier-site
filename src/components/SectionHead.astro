@@ -1,0 +1,16 @@
+---
+interface Props {
+  index: string;
+  label: string;
+  align?: "left" | "between";
+}
+const { index, label, align = "left" } = Astro.props;
+---
+
+<div class={`reveal flex items-center gap-4 ${align === "between" ? "justify-between" : ""}`}>
+  <div class="flex items-center gap-4">
+    <span class="ghost-index">{index}</span>
+    <span class="meta text-[var(--color-accent)]">{label}</span>
+  </div>
+  <span class="hairline max-w-[120px] flex-1 opacity-60"></span>
+</div>

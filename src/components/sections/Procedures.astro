@@ -1,0 +1,44 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { procedures } from "../../data/content";
+---
+
+<section id="procedures" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index="07" label="Процедуры и стоимость" />
+
+    <div class="mt-10 flex flex-col justify-between gap-6 md:mt-14 lg:flex-row lg:items-end">
+      <h2 class="reveal max-w-xl font-display text-chalk" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+        Прозрачный прайс. Никаких скрытых пакетов
+      </h2>
+      <p class="reveal text-sm text-bone" style="--reveal-delay: 100ms;">
+        Точная стоимость зависит от состояния кожи и подбирается на консультации.
+      </p>
+    </div>
+
+    <div class="mt-12 border-t border-graphite md:mt-16">
+      {
+        procedures.map((p, i) => (
+          <div
+            class="reveal group grid grid-cols-1 items-baseline gap-2 border-b border-graphite py-6 transition-colors duration-300 hover:bg-carbon/50 md:grid-cols-12 md:gap-6 md:px-2"
+            style={`--reveal-delay: ${(i % 4) * 50}ms;`}
+          >
+            <div class="md:col-span-4">
+              <span class="meta mb-1 block text-smoke">{p.category}</span>
+              <h3 class="font-display text-2xl text-chalk transition-colors group-hover:text-[var(--color-accent)]">
+                {p.name}
+              </h3>
+            </div>
+            <p class="text-sm leading-relaxed text-bone md:col-span-5">{p.desc}</p>
+            <span class="text-sm text-smoke md:col-span-1">{p.duration}</span>
+            <span class="font-display text-xl text-chalk md:col-span-2 md:text-right">{p.priceFrom}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-10">
+      <a href="#booking" class="pill pill-ghost">Подобрать процедуру на консультации</a>
+    </div>
+  </div>
+</section>

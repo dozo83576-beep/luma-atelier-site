@@ -1,0 +1,66 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { method, problems } from "../../data/content";
+---
+
+<section id="problems" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index={method.index} label={method.label} />
+
+    <!-- Метод: как мы работаем -->
+    <div class="mt-10 flex flex-col justify-between gap-6 md:mt-14 lg:flex-row lg:items-end">
+      <h2 class="reveal max-w-2xl font-display text-chalk" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+        {method.heading}
+      </h2>
+      <p class="reveal max-w-sm text-bone leading-relaxed" style="--reveal-delay: 100ms;">
+        {method.intro}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-x-8 gap-y-10 border-t border-graphite pt-10 sm:grid-cols-2 lg:grid-cols-4 md:mt-14">
+      {
+        method.steps.map((s, i) => (
+          <div class="reveal relative" style={`--reveal-delay: ${(i % 4) * 80}ms;`}>
+            <span class="font-display text-[var(--color-accent)]" style="font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1;">
+              {s.num}
+            </span>
+            <h3 class="mt-4 font-display text-2xl text-chalk">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-bone">{s.desc}</p>
+            {i < method.steps.length - 1 && (
+              <span class="absolute -right-4 top-6 hidden text-smoke lg:block" aria-hidden="true">→</span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- С чем мы работаем -->
+    <div class="mt-24 md:mt-28">
+      <div class="reveal flex items-center gap-4">
+        <span class="meta text-[var(--color-accent)]">{problems.label}</span>
+        <span class="hairline flex-1 opacity-60"></span>
+      </div>
+
+      <h3 class="reveal mt-8 max-w-2xl font-display text-chalk" style="font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.08;">
+        {problems.heading}
+      </h3>
+
+      <div class="mt-10 grid gap-x-12 md:grid-cols-2">
+        {
+          problems.items.map((item, i) => (
+            <div
+              class="reveal grid gap-1.5 border-b border-graphite py-6"
+              style={`--reveal-delay: ${(i % 2) * 70}ms;`}
+            >
+              <div class="flex items-baseline gap-3">
+                <span class="font-mono text-[0.7rem] text-smoke">0{i + 1}</span>
+                <h4 class="font-display text-xl text-chalk md:text-2xl">{item.problem}</h4>
+              </div>
+              <p class="pl-7 text-sm leading-relaxed text-bone">{item.approach}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

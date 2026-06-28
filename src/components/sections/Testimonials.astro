@@ -1,0 +1,36 @@
+---
+import { testimonials } from "../../data/content";
+---
+
+<section id="testimonials" class="bg-[var(--color-linen)] flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)] text-[var(--color-ink)]">
+  <div class="container-luma">
+    <div class="reveal flex items-center gap-4">
+      <span class="font-mono text-[0.6875rem] font-medium tracking-[0.18em] text-[var(--color-accent-deep)]">09</span>
+      <span class="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[var(--color-ink-soft)]">Отзывы</span>
+      <span class="h-px max-w-[120px] flex-1 bg-[var(--color-ink)]/15"></span>
+    </div>
+
+    <h2 class="reveal mt-10 max-w-3xl font-display md:mt-14" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+      Что говорят те, кто остаётся с нами надолго
+    </h2>
+
+    <div class="mt-12 grid gap-6 md:mt-16 lg:grid-cols-3">
+      {
+        testimonials.map((t, i) => (
+          <figure
+            class="reveal flex flex-col justify-between rounded-xl border border-[var(--color-ink)]/10 bg-white/40 p-7 md:p-8"
+            style={`--reveal-delay: ${i * 90}ms;`}
+          >
+            <blockquote class="font-display leading-snug" style="font-size: clamp(1.25rem, 2vw, 1.6rem);">
+              «{t.quote}»
+            </blockquote>
+            <figcaption class="mt-8 border-t border-[var(--color-ink)]/10 pt-5">
+              <p class="font-medium">{t.name}</p>
+              <p class="mt-1 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-[var(--color-ink-soft)]">{t.meta}</p>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+# build output
+dist/
+# generated types
+.astro/
+# dependencies
+node_modules/
+# logs
+npm-debug.log*
+# environment variables
+.env
+.env.production
+# macOS / editor
+.DS_Store
+# local stash of unused source images (not part of the site)
+_unused-img/
+# vercel
+.vercel/

@@ -1,0 +1,374 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LUMA — design tokens (Tailwind v4 @theme)
+   Dark cinematic stage + single warm champagne accent.
+   ============================================================ */
+@theme {
+  /* surfaces */
+  --color-void: #0a0a0b; /* основной холст */
+  --color-carbon: #141312; /* приподнятые поверхности, карточки */
+  --color-graphite: #2a2622; /* hairline-границы */
+  --color-linen: #ede6db; /* инвертированная светлая панель */
+
+  /* text on dark */
+  --color-chalk: #f5f1ea; /* primary on dark */
+  --color-bone: #b7aea2; /* secondary on dark */
+  --color-smoke: #7c746a; /* muted */
+
+  /* text on light */
+  --color-ink: #1a1714;
+  --color-ink-soft: #5b5249;
+
+  /* accent — тёплый янтарь, точечно */
+  --color-accent: #d9a35c;
+  --color-accent-deep: #c0863f;
+
+  /* type */
+  --font-display: "Cormorant", Georgia, "Times New Roman", serif;
+  --font-body: "Onest", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* layout */
+  --spacing-section: 7.5rem; /* 120px вертикальный ритм */
+}
+
+/* ============================================================
+   Self-host fonts (woff2, cyrillic + latin subsets)
+   ============================================================ */
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cormorant-cyrillic-400.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/cormorant-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/cormorant-cyrillic-500.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/cormorant-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/cormorant-cyrillic-600.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/cormorant-latin-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/onest-cyrillic-300.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/onest-latin-300.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/onest-cyrillic-400.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/onest-latin-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/onest-cyrillic-500.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Onest";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/onest-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-cyrillic-500.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/jetbrains-mono-latin-500.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212, U+FEFF, U+FFFD;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-chalk);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-void);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* ============================================================
+   Reusable composition utilities
+   ============================================================ */
+@layer components {
+  .container-luma {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-luma {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* meta / mono label */
+  .meta {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-smoke);
+  }
+
+  /* ghost section index */
+  .ghost-index {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    color: var(--color-accent);
+  }
+
+  /* hairline divider */
+  .hairline {
+    height: 1px;
+    width: 100%;
+    background: var(--color-graphite);
+    border: 0;
+  }
+
+  /* pill button — primary */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.875rem 1.5rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0;
+    line-height: 1;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    will-change: transform;
+  }
+  .pill-primary {
+    background: var(--color-chalk);
+    color: var(--color-void);
+  }
+  .pill-primary:hover {
+    background: var(--color-accent);
+  }
+  .pill-ghost {
+    border: 1px solid color-mix(in oklab, var(--color-chalk) 28%, transparent);
+    color: var(--color-chalk);
+  }
+  .pill-ghost:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* category badge */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.3125rem 0.6875rem;
+    background: color-mix(in oklab, var(--color-chalk) 8%, transparent);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-chalk);
+  }
+
+  /* custom checkbox */
+  .luma-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.05rem;
+    height: 1.05rem;
+    border: 1px solid var(--color-graphite);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+  }
+  .luma-check:hover {
+    border-color: var(--color-accent);
+  }
+  .luma-check:checked {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .luma-check:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 9px;
+    border: solid var(--color-void);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* editorial image card shadow */
+  .card-shadow {
+    box-shadow:
+      rgba(0, 0, 0, 0.45) 0 18px 50px -12px,
+      rgba(255, 255, 255, 0.06) 0 1px 0 0 inset;
+  }
+}
+
+/* ============================================================
+   Ken-Burns (hero background)
+   ============================================================ */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.05) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.16) translate3d(-1.5%, -1.5%, 0);
+  }
+}
+.kenburns {
+  animation: kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* ============================================================
+   Scroll reveal (IntersectionObserver-driven)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

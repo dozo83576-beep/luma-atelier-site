@@ -1,0 +1,39 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { faq } from "../../data/content";
+---
+
+<section id="faq" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index="11" label="Частые вопросы" />
+
+    <div class="mt-12 grid gap-10 md:mt-16 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-4">
+        <h2 class="reveal font-display text-chalk lg:sticky lg:top-28" style="font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.05;">
+          Коротко о главном
+        </h2>
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="border-t border-graphite">
+          {
+            faq.map((item, i) => (
+              <details class="reveal group border-b border-graphite" style={`--reveal-delay: ${(i % 3) * 60}ms;`}>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-6 marker:hidden">
+                  <h3 class="font-display text-xl text-chalk transition-colors group-hover:text-[var(--color-accent)] md:text-2xl">
+                    {item.q}
+                  </h3>
+                  <span class="relative h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden="true">
+                    <span class="absolute left-0 top-1/2 h-[1.5px] w-4 -translate-y-1/2 bg-current"></span>
+                    <span class="absolute left-1/2 top-0 h-4 w-[1.5px] -translate-x-1/2 bg-current transition-transform duration-300 group-open:rotate-90 group-open:opacity-0"></span>
+                  </span>
+                </summary>
+                <p class="max-w-2xl pb-7 text-bone leading-relaxed">{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

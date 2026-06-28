@@ -1,0 +1,58 @@
+---
+import { site, nav, footer } from "../../data/content";
+---
+
+<footer class="border-t border-graphite bg-void pb-10 pt-[var(--spacing-section)]">
+  <div class="container-luma">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <!-- Brand -->
+      <div class="lg:col-span-5">
+        <div class="flex items-center gap-3">
+          <span class="flex h-4 items-end gap-[3px]" aria-hidden="true">
+            <span class="block h-3 w-[2px] bg-[var(--color-accent)]"></span>
+            <span class="block h-4 w-[2px] bg-[var(--color-accent)]"></span>
+            <span class="block h-2.5 w-[2px] bg-[var(--color-accent)]"></span>
+          </span>
+          <span class="text-lg font-medium tracking-[0.32em] text-chalk">{site.brand}</span>
+        </div>
+        <p class="mt-6 max-w-sm font-display leading-snug text-bone" style="font-size: clamp(1.5rem, 2.5vw, 2rem);">
+          {footer.tagline}
+        </p>
+      </div>
+
+      <!-- Nav -->
+      <nav class="lg:col-span-3">
+        <span class="meta">Разделы</span>
+        <ul class="mt-5 space-y-3">
+          {nav.map((n) => (
+            <li><a href={n.href} class="text-bone transition-colors hover:text-chalk">{n.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Contacts -->
+      <div class="lg:col-span-4">
+        <span class="meta">Контакты</span>
+        <ul class="mt-5 space-y-3">
+          <li><a href={site.phoneHref} class="text-bone transition-colors hover:text-chalk">{site.phone}</a></li>
+          <li><a href={`mailto:${site.email}`} class="text-bone transition-colors hover:text-chalk">{site.email}</a></li>
+          <li class="text-bone">{site.address}</li>
+          <li class="meta pt-1">{site.hours}</li>
+        </ul>
+        <div class="mt-6 flex gap-4">
+          {site.social.map((s) => (
+            <a href={s.href} class="text-sm text-smoke transition-colors hover:text-[var(--color-accent)]">{s.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 flex flex-col gap-3 border-t border-graphite pt-8 text-xs text-smoke sm:flex-row sm:items-center sm:justify-between">
+      <p>© {footer.year} {site.brand}. {footer.legal}</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="transition-colors hover:text-bone">{footer.privacy}</a>
+        <a href="#top" class="transition-colors hover:text-bone">Наверх ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>

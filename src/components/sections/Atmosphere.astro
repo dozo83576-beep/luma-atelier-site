@@ -1,0 +1,38 @@
+---
+import SectionHead from "../SectionHead.astro";
+import { atmosphere } from "../../data/content";
+---
+
+<section id="atmosphere" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+  <div class="container-luma">
+    <SectionHead index={atmosphere.index} label={atmosphere.label} />
+
+    <div class="mt-10 grid gap-8 md:mt-14 lg:grid-cols-12 lg:items-end lg:gap-16">
+      <h2 class="reveal font-display text-chalk lg:col-span-7" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+        {atmosphere.heading}
+      </h2>
+      <p class="reveal text-bone leading-relaxed lg:col-span-5" style="--reveal-delay: 100ms;">
+        {atmosphere.body}
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 gap-4 md:mt-16 lg:h-[540px] lg:grid-cols-4 lg:grid-rows-2">
+      {
+        atmosphere.gallery.map((g, i) => (
+          <div
+            class={`reveal relative overflow-hidden rounded-xl card-shadow lg:aspect-auto lg:h-full ${i === 0 ? "col-span-2 aspect-[16/10] lg:col-span-2 lg:row-span-2" : "aspect-square"}`}
+            style={`--reveal-delay: ${i * 80}ms;`}
+          >
+            <img
+              src={g.img}
+              alt={g.alt}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out hover:scale-105"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
