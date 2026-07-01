@@ -1,24 +1,48 @@
 ---
-import SectionHead from "../SectionHead.astro";
 import { philosophy } from "../../data/content";
 ---
 
-<section id="philosophy" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+<section id="philosophy" class="bg-[var(--color-linen)] flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)] text-[var(--color-ink)]">
   <div class="container-luma">
-    <SectionHead index={philosophy.index} label={philosophy.label} />
+    <div class="reveal flex items-center gap-4">
+      <span class="font-mono text-[0.6875rem] font-medium tracking-[0.18em] text-[var(--color-accent-deep)]">{philosophy.index}</span>
+      <span class="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[var(--color-ink-soft)]">{philosophy.label}</span>
+      <span class="h-px max-w-[120px] flex-1 bg-[var(--color-ink)]/15"></span>
+    </div>
 
     <div class="mt-12 grid gap-10 md:mt-16 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-7">
         <h2
-          class="reveal font-display text-chalk"
+          class="reveal font-display"
           style="font-size: clamp(1.9rem, 4vw, 3.25rem); line-height: 1.08;"
         >
           {philosophy.heading}
         </h2>
       </div>
       <div class="reveal space-y-5 self-end lg:col-span-5" style="--reveal-delay: 120ms;">
-        {philosophy.body.map((p) => <p class="text-bone leading-relaxed md:text-lg">{p}</p>)}
-        <p class="meta pt-2 text-[var(--color-accent)]">{philosophy.signature}</p>
+        {philosophy.body.map((p) => <p class="text-[var(--color-ink-soft)] leading-relaxed md:text-lg">{p}</p>)}
+        <p class="meta pt-2 text-[var(--color-accent-deep)]">{philosophy.signature}</p>
+      </div>
+    </div>
+
+    <!-- Цифры, подтверждающие философию -->
+    <div class="mt-16 border-t border-[var(--color-ink)]/15 pt-12 md:mt-20 md:pt-14">
+      <p class="reveal meta text-[var(--color-accent-deep)]">{philosophy.statsLabel}</p>
+
+      <div class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-5">
+        {
+          philosophy.stats.map((s, i) => (
+            <div
+              class="reveal group rounded-xl border border-[var(--color-ink)]/12 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent-deep)]/50 hover:shadow-[0_18px_40px_-20px_rgba(26,23,20,0.25)]"
+              style={`--reveal-delay: ${i * 70}ms;`}
+            >
+              <p class="font-display" style="font-size: clamp(2.25rem, 5vw, 3.5rem); line-height: 1;">
+                <span data-count-to={s.value}>0</span><span class="text-[var(--color-accent-deep)]">{s.suffix}</span>
+              </p>
+              <p class="mt-3 text-sm leading-relaxed text-[var(--color-ink-soft)]">{s.label}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
