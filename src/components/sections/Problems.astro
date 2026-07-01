@@ -45,18 +45,15 @@ import { method, problems } from "../../data/content";
         {problems.heading}
       </h3>
 
-      <div class="mt-10 grid gap-x-12 md:grid-cols-2">
+      <div class="mt-10 grid gap-4 md:grid-cols-2 md:gap-x-10 md:gap-y-5">
         {
           problems.items.map((item, i) => (
             <div
-              class="reveal grid gap-1.5 border-b border-graphite py-6"
+              class="reveal flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-graphite py-5"
               style={`--reveal-delay: ${(i % 2) * 70}ms;`}
             >
-              <div class="flex items-baseline gap-3">
-                <span class="font-mono text-[0.7rem] text-smoke">0{i + 1}</span>
-                <h4 class="font-display text-xl text-chalk md:text-2xl">{item.problem}</h4>
-              </div>
-              <p class="pl-7 text-sm leading-relaxed text-bone">{item.approach}</p>
+              <span class="badge shrink-0">{item.problem}</span>
+              <p class="text-sm leading-relaxed text-bone">{item.approach}</p>
             </div>
           ))
         }
