@@ -7,13 +7,10 @@ import { programs } from "../../data/content";
   <div class="container-luma">
     <SectionHead index="03" label="Персональные программы" />
 
-    <div class="mt-10 flex flex-col justify-between gap-6 md:mt-14 lg:flex-row lg:items-end">
-      <h2 class="reveal max-w-xl font-display text-chalk" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+    <div class="mt-10 max-w-xl md:mt-14">
+      <h2 class="reveal font-display text-chalk" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
         Не отдельные процедуры, а путь к состоянию кожи
       </h2>
-      <p class="reveal max-w-sm text-bone leading-relaxed" style="--reveal-delay: 100ms;">
-        Каждая программа начинается с диагностики и заканчивается планом домашнего ухода. Мы ведём вас от первого визита до устойчивого результата.
-      </p>
     </div>
 
     <div class="mt-12 grid gap-5 md:mt-16 lg:grid-cols-3">
@@ -52,7 +49,7 @@ import { programs } from "../../data/content";
                 ))}
               </ul>
 
-              <div class="mt-8 flex items-center justify-between border-t border-graphite pt-6">
+              <div class="mt-auto flex items-center justify-between border-t border-graphite pt-6">
                 <span class="font-display text-xl text-chalk">{p.priceFrom}</span>
                 <a href="#booking" class="text-sm text-bone transition-colors hover:text-[var(--color-accent)]">
                   Записаться →
