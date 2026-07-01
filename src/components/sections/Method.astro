@@ -1,0 +1,39 @@
+---
+import { method } from "../../data/content";
+---
+
+<section id="method" class="bg-[var(--color-linen)] flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)] text-[var(--color-ink)]">
+  <div class="container-luma">
+    <div class="reveal flex items-center gap-4">
+      <span class="font-mono text-[0.6875rem] font-medium tracking-[0.18em] text-[var(--color-accent-deep)]">{method.index}</span>
+      <span class="font-mono text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[var(--color-ink-soft)]">{method.label}</span>
+      <span class="h-px max-w-[120px] flex-1 bg-[var(--color-ink)]/15"></span>
+    </div>
+
+    <div class="mt-10 flex flex-col justify-between gap-6 md:mt-14 lg:flex-row lg:items-end">
+      <h2 class="reveal max-w-2xl font-display" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
+        {method.heading}
+      </h2>
+      <p class="reveal max-w-sm text-[var(--color-ink-soft)] leading-relaxed" style="--reveal-delay: 100ms;">
+        {method.intro}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-x-8 gap-y-10 border-t border-[var(--color-ink)]/15 pt-10 sm:grid-cols-2 lg:grid-cols-4 md:mt-14">
+      {
+        method.steps.map((s, i) => (
+          <div class="reveal relative" style={`--reveal-delay: ${(i % 4) * 80}ms;`}>
+            <span class="font-display text-[var(--color-accent-deep)]" style="font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1;">
+              {s.num}
+            </span>
+            <h3 class="mt-4 font-display text-2xl">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--color-ink-soft)]">{s.desc}</p>
+            {i < method.steps.length - 1 && (
+              <span class="absolute -right-4 top-6 hidden text-[var(--color-ink-soft)]/60 lg:block" aria-hidden="true">→</span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

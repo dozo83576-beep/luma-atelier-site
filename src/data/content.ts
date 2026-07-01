@@ -22,7 +22,7 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Философия", href: "#philosophy" },
+  { label: "Как мы работаем", href: "#method" },
   { label: "Направления", href: "#directions" },
   { label: "Программы", href: "#programs" },
   { label: "Процедуры", href: "#procedures" },
@@ -51,23 +51,6 @@ export const hero = {
   ] as string[][],
 };
 
-export const philosophy = {
-  index: "01",
-  label: "Философия",
-  heading:
-    "Мы не обещаем чудо за одну процедуру - мы возвращаем коже спокойное, здоровое состояние.",
-  body: [
-    "Хороший уход незаметен: не вывеска, а то, как кожа выглядит через неделю. В ЛУМА протокол подбирается под вашу кожу, а не под средний прайс - без лишнего.",
-  ],
-  signature: "- команда ЛУМА",
-  statsLabel: "Почему ЛУМА",
-  stats: [
-    { value: "12", suffix: " лет", label: "практики в эстетике и дерматокосметологии" },
-    { value: "40", suffix: "+", label: "протоколов ухода под разные типы кожи" },
-    { value: "1", suffix: " на 1", label: "один мастер ведёт вас от диагностики до результата" },
-    { value: "100", suffix: "%", label: "процедур начинаются с диагностики кожи" },
-  ],
-};
 
 export type Direction = {
   num: string;
@@ -171,7 +154,7 @@ export const programs: Program[] = [
 ];
 
 export const method = {
-  index: "05",
+  index: "01",
   label: "Как мы работаем",
   heading: "Понятный путь от первого визита до результата",
   intro:
@@ -201,7 +184,7 @@ export const method = {
 };
 
 export const problems = {
-  index: "05",
+  index: "04",
   label: "С чем мы работаем",
   heading: "Частые запросы, с которыми приходят в ЛУМА",
   items: [

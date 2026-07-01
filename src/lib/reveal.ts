@@ -25,51 +25,6 @@ function initReveal() {
   els.forEach((el) => io.observe(el));
 }
 
-// --- Count-up stat numbers ---------------------------------------------------
-function initCountUp() {
-  const els = document.querySelectorAll<HTMLElement>("[data-count-to]");
-  if (!els.length) return;
-
-  const setFinal = (el: HTMLElement) => {
-    el.textContent = el.dataset.countTo ?? "0";
-  };
-
-  if (prefersReduced || !("IntersectionObserver" in window)) {
-    els.forEach(setFinal);
-    return;
-  }
-
-  const animate = (el: HTMLElement) => {
-    const target = parseInt(el.dataset.countTo ?? "0", 10);
-    if (!target) {
-      setFinal(el);
-      return;
-    }
-    const duration = 1400;
-    const start = performance.now();
-    const step = (now: number) => {
-      const progress = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = String(Math.round(eased * target));
-      if (progress < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animate(entry.target as HTMLElement);
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.4 },
-  );
-  els.forEach((el) => io.observe(el));
-}
-
 // --- Smooth scroll ----------------------------------------------------------
 function initLenis() {
   if (prefersReduced) return;
@@ -112,7 +67,6 @@ function initNav() {
 
 function init() {
   initReveal();
-  initCountUp();
   initLenis();
   initNav();
 }
