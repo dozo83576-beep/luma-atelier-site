@@ -7,21 +7,33 @@ import { atmosphere } from "../../data/content";
   <div class="container-luma">
     <SectionHead index={atmosphere.index} label={atmosphere.label} />
 
-    <div class="mt-10 grid gap-8 md:mt-14 lg:grid-cols-12 lg:items-end lg:gap-16">
-      <h2 class="reveal font-display text-chalk lg:col-span-7" style="font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.05;">
-        {atmosphere.heading}
-      </h2>
-      <p class="reveal text-bone leading-relaxed lg:col-span-5" style="--reveal-delay: 100ms;">
-        {atmosphere.body}
-      </p>
-    </div>
+    <div class="mt-10 grid grid-cols-2 gap-4 md:mt-14 lg:h-[540px] lg:grid-cols-4 lg:grid-rows-2">
+      <!-- Крупное фото: заголовок и текст как оверлей -->
+      <div class="reveal group relative col-span-2 aspect-[16/10] overflow-hidden rounded-xl card-shadow lg:col-span-2 lg:row-span-2 lg:aspect-auto lg:h-full">
+        <img
+          src={atmosphere.gallery[0].img}
+          alt={atmosphere.gallery[0].alt}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"
+        />
+        <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(20,16,12,0.10) 0%, rgba(20,16,12,0.30) 40%, rgba(20,16,12,0.90) 100%);" />
+        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+          <h2 class="reveal font-display text-chalk" style="font-size: clamp(1.6rem, 3.2vw, 2.5rem); line-height: 1.08;">
+            {atmosphere.heading}
+          </h2>
+          <p class="reveal mt-3 max-w-md text-sm leading-relaxed text-bone md:text-base" style="--reveal-delay: 100ms;">
+            {atmosphere.body}
+          </p>
+        </div>
+      </div>
 
-    <div class="mt-12 grid grid-cols-2 gap-4 md:mt-16 lg:h-[540px] lg:grid-cols-4 lg:grid-rows-2">
+      <!-- Остальные фото: простая сетка без подписей -->
       {
-        atmosphere.gallery.map((g, i) => (
+        atmosphere.gallery.slice(1).map((g, i) => (
           <div
-            class={`reveal relative overflow-hidden rounded-xl card-shadow lg:aspect-auto lg:h-full ${i === 0 ? "col-span-2 aspect-[16/10] lg:col-span-2 lg:row-span-2" : "aspect-square"}`}
-            style={`--reveal-delay: ${i * 80}ms;`}
+            class="reveal relative aspect-square overflow-hidden rounded-xl card-shadow lg:aspect-auto lg:h-full"
+            style={`--reveal-delay: ${(i + 1) * 80}ms;`}
           >
             <img
               src={g.img}

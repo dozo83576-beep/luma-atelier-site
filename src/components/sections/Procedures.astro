@@ -3,7 +3,7 @@ import SectionHead from "../SectionHead.astro";
 import { procedures } from "../../data/content";
 ---
 
-<section id="procedures" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+<section id="procedures" class="bg-umber flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
   <div class="container-luma">
     <SectionHead index="07" label="Процедуры и стоимость" />
 
@@ -16,23 +16,43 @@ import { procedures } from "../../data/content";
       </p>
     </div>
 
-    <div class="mt-12 border-t border-graphite md:mt-16">
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 md:mt-16">
       {
         procedures.map((p, i) => (
-          <div
-            class="reveal group grid grid-cols-1 items-baseline gap-2 border-b border-graphite py-6 transition-colors duration-300 hover:bg-carbon/50 md:grid-cols-12 md:gap-6 md:px-2"
-            style={`--reveal-delay: ${(i % 4) * 50}ms;`}
+          <article
+            class="reveal group flex flex-col overflow-hidden rounded-xl border border-graphite bg-carbon transition-colors duration-500 hover:border-[var(--color-accent)]/40"
+            style={`--reveal-delay: ${(i % 4) * 60}ms;`}
           >
-            <div class="md:col-span-4">
-              <span class="meta mb-1 block text-smoke">{p.category}</span>
-              <h3 class="font-display text-2xl text-chalk transition-colors group-hover:text-[var(--color-accent)]">
-                {p.name}
-              </h3>
+            <div class="relative aspect-[4/5] overflow-hidden">
+              <img
+                src={p.img}
+                alt={p.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+              />
+              <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(20,16,12,0.05) 0%, rgba(20,16,12,0.35) 45%, rgba(20,16,12,0.92) 100%);" />
+              <div class="absolute inset-x-0 top-0 p-4">
+                <span class="badge">{p.category}</span>
+              </div>
+              <div class="absolute inset-x-0 bottom-0 p-4">
+                <h3 class="font-display text-xl text-chalk">{p.name}</h3>
+              </div>
             </div>
-            <p class="text-sm leading-relaxed text-bone md:col-span-5">{p.desc}</p>
-            <span class="text-sm text-smoke md:col-span-1">{p.duration}</span>
-            <span class="font-display text-xl text-chalk md:col-span-2 md:text-right">{p.priceFrom}</span>
-          </div>
+
+            <div class="flex flex-1 flex-col p-5">
+              <p class="text-sm leading-relaxed text-bone">{p.desc}</p>
+              <div class="mt-4 flex items-center justify-between border-t border-graphite pt-4">
+                <div>
+                  <span class="block text-xs text-smoke">{p.duration}</span>
+                  <span class="font-display text-lg text-chalk">{p.priceFrom}</span>
+                </div>
+                <a href="#booking" class="text-xs text-bone transition-colors hover:text-[var(--color-accent)]">
+                  Записаться →
+                </a>
+              </div>
+            </div>
+          </article>
         ))
       }
     </div>

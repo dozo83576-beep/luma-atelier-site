@@ -3,7 +3,7 @@ import SectionHead from "../SectionHead.astro";
 import { programs } from "../../data/content";
 ---
 
-<section id="programs" class="bg-void flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
+<section id="programs" class="bg-umber flex min-h-[100svh] flex-col justify-center py-[var(--spacing-section)]">
   <div class="container-luma">
     <SectionHead index="03" label="Персональные программы" />
 
@@ -20,32 +20,44 @@ import { programs } from "../../data/content";
       {
         programs.map((p, i) => (
           <article
-            class="reveal flex flex-col rounded-xl border border-graphite bg-carbon p-7 transition-colors duration-500 hover:border-[var(--color-accent)]/40 md:p-8"
+            class="reveal group flex flex-col overflow-hidden rounded-xl border border-graphite bg-carbon transition-colors duration-500 hover:border-[var(--color-accent)]/40"
             style={`--reveal-delay: ${i * 90}ms;`}
           >
-            <div class="flex items-center justify-between">
-              <span class="ghost-index">{p.num}</span>
-              <span class="badge">{p.duration}</span>
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={p.img}
+                alt={p.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+              />
+              <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(20,16,12,0) 55%, rgba(20,16,12,0.55) 100%);" />
+              <div class="absolute inset-x-0 bottom-0 flex items-center justify-between p-5">
+                <span class="ghost-index">{p.num}</span>
+                <span class="badge">{p.duration}</span>
+              </div>
             </div>
 
-            <h3 class="mt-8 font-display text-3xl text-chalk md:text-4xl">{p.title}</h3>
-            <p class="mt-1 text-sm text-[var(--color-accent)]">{p.tagline}</p>
-            <p class="mt-4 text-bone leading-relaxed">{p.desc}</p>
+            <div class="flex flex-1 flex-col p-7 md:p-8">
+              <h3 class="font-display text-3xl text-chalk md:text-4xl">{p.title}</h3>
+              <p class="mt-1 text-sm text-[var(--color-accent)]">{p.tagline}</p>
+              <p class="mt-4 text-bone leading-relaxed">{p.desc}</p>
 
-            <ul class="mt-7 space-y-3 border-t border-graphite pt-6">
-              {p.steps.map((s, si) => (
-                <li class="flex items-baseline gap-3 text-sm text-bone">
-                  <span class="font-mono text-[0.7rem] text-smoke">0{si + 1}</span>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
+              <ul class="mt-7 space-y-3 border-t border-graphite pt-6">
+                {p.steps.map((s, si) => (
+                  <li class="flex items-baseline gap-3 text-sm text-bone">
+                    <span class="font-mono text-[0.7rem] text-smoke">0{si + 1}</span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <div class="mt-8 flex items-center justify-between border-t border-graphite pt-6">
-              <span class="font-display text-xl text-chalk">{p.priceFrom}</span>
-              <a href="#booking" class="text-sm text-bone transition-colors hover:text-[var(--color-accent)]">
-                Записаться →
-              </a>
+              <div class="mt-8 flex items-center justify-between border-t border-graphite pt-6">
+                <span class="font-display text-xl text-chalk">{p.priceFrom}</span>
+                <a href="#booking" class="text-sm text-bone transition-colors hover:text-[var(--color-accent)]">
+                  Записаться →
+                </a>
+              </div>
             </div>
           </article>
         ))

@@ -96,7 +96,7 @@ export default function Hero() {
         style={{
           opacity: reduce ? 0.7 : veilOpacity,
           background:
-            "linear-gradient(90deg, rgba(10,10,11,0.72) 0%, rgba(10,10,11,0.30) 42%, rgba(10,10,11,0) 70%), linear-gradient(270deg, rgba(10,10,11,0.55) 0%, rgba(10,10,11,0) 42%), linear-gradient(180deg, rgba(10,10,11,0.45) 0%, rgba(10,10,11,0.20) 30%, rgba(10,10,11,0.55) 66%, rgba(10,10,11,0.97) 100%)",
+            "linear-gradient(90deg, rgba(20,16,12,0.72) 0%, rgba(20,16,12,0.30) 42%, rgba(20,16,12,0) 70%), linear-gradient(270deg, rgba(20,16,12,0.55) 0%, rgba(20,16,12,0) 42%), linear-gradient(180deg, rgba(20,16,12,0.45) 0%, rgba(20,16,12,0.20) 30%, rgba(20,16,12,0.55) 66%, rgba(20,16,12,0.97) 100%)",
         }}
       />
       {/* Cursor-follow soft light */}
@@ -114,7 +114,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-y-0 right-0 z-[5] hidden w-1/2 lg:block"
         style={{
           background:
-            "radial-gradient(58% 40% at 90% 50%, rgba(10,10,11,0.82), rgba(10,10,11,0) 72%)",
+            "radial-gradient(70% 55% at 88% 50%, rgba(20,16,12,0.90), rgba(20,16,12,0) 75%)",
         }}
       />
 
@@ -131,8 +131,7 @@ export default function Hero() {
           initial="hidden"
           animate="show"
           custom={0}
-          className="meta mb-6 text-[var(--color-accent)] md:mb-8"
-          style={{ textShadow: "0 1px 24px rgba(0,0,0,0.55)" }}
+          className="meta mb-6 inline-flex w-fit items-center rounded-full border border-[var(--color-accent)]/25 bg-void/50 px-4 py-2 text-[0.75rem] text-[var(--color-accent)] backdrop-blur-md md:mb-8 md:text-[0.8125rem]"
         >
           {hero.kicker}
         </motion.p>
@@ -162,7 +161,7 @@ export default function Hero() {
           initial="hidden"
           animate="show"
           custom={1}
-          className="mt-7 max-w-xl text-base leading-relaxed text-chalk/80 md:mt-9 md:text-lg"
+          className="mt-7 max-w-xl text-lg leading-relaxed text-chalk/88 md:mt-9 md:text-xl"
           style={{ textShadow: "0 1px 24px rgba(0,0,0,0.55)" }}
         >
           {hero.subtitle}
@@ -220,7 +219,7 @@ function RotatingPrinciples({ reduce }: { reduce: boolean }) {
   const shadow = { textShadow: "0 2px 18px rgba(0,0,0,0.9)" } as const;
 
   return (
-    <div className="pointer-events-none absolute right-[6%] top-1/2 z-10 hidden w-[22rem] -translate-y-1/2 text-right lg:block">
+    <div className="pointer-events-none absolute right-[6%] top-1/2 z-10 hidden w-[26rem] -translate-y-1/2 text-right lg:block">
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -236,7 +235,7 @@ function RotatingPrinciples({ reduce }: { reduce: boolean }) {
           {items.map((lines) => (
             <p
               key={lines.join(" ")}
-              className="font-display text-[1.5rem] leading-[1.12] text-chalk"
+              className="font-display text-[1.75rem] leading-[1.14] text-chalk"
               style={shadow}
             >
               {lines.map((l) => (
@@ -249,7 +248,7 @@ function RotatingPrinciples({ reduce }: { reduce: boolean }) {
         </div>
       ) : (
         <>
-          <div className="relative h-[4.5rem] w-full md:h-[5.25rem]">
+          <div className="relative h-[5.25rem] w-full md:h-[6rem]">
             <AnimatePresence mode="wait">
               <motion.p
                 key={index}
@@ -257,7 +256,7 @@ function RotatingPrinciples({ reduce }: { reduce: boolean }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute right-0 top-0 w-full font-display text-[1.6rem] leading-[1.12] text-chalk md:text-[1.75rem]"
+                className="absolute right-0 top-0 w-full font-display text-[1.85rem] leading-[1.14] text-chalk md:text-[2.15rem]"
                 style={shadow}
               >
                 {items[index].map((l) => (
@@ -273,10 +272,10 @@ function RotatingPrinciples({ reduce }: { reduce: boolean }) {
             {items.map((_, i) => (
               <span
                 key={i}
-                className="h-1.5 w-1.5 rounded-full transition-colors duration-500"
+                className="h-[3px] w-5 rounded-full transition-colors duration-500"
                 style={{
                   backgroundColor:
-                    i === index ? "var(--color-accent)" : "rgba(245,241,234,0.25)",
+                    i === index ? "var(--color-accent)" : "rgba(245,241,234,0.22)",
                 }}
               />
             ))}
