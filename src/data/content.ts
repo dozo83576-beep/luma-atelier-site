@@ -22,7 +22,7 @@ export const site = {
 };
 
 export const nav = [
-  { label: "Как мы работаем", href: "#method" },
+  { label: "Метод", href: "#method" },
   { label: "Направления", href: "#directions" },
   { label: "Программы", href: "#programs" },
   { label: "Процедуры", href: "#procedures" },
