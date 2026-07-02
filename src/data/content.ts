@@ -219,7 +219,7 @@ export const procedures: Procedure[] = [
 ];
 
 export const atmosphere = {
-  index: "08",
+  index: "06",
   label: "Атмосфера",
   heading: "Один кабинет. Тёплый свет. Никакого потока.",
   body: "Мы намеренно не работаем в формате конвейера. В ЛУМА один гость в один момент времени - чтобы внимание принадлежало только вам.",
@@ -326,7 +326,7 @@ export const faq: Faq[] = [
 ];
 
 export const booking = {
-  index: "12",
+  index: "10",
   label: "Запись",
   heading: "Начнём с разговора о вашей коже",
   subtitle:
